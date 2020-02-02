@@ -8,6 +8,7 @@ from odoo import api, fields, models, _
 # 3 :  imports of odoo modules
 
 # 4 :  imports from custom modules
+from . import constants
 
 _logger = logging.getLogger(__name__)
 
@@ -89,23 +90,18 @@ class BookBook(models.Model):
     )
     """ Категория книги """
 
-    stage_id = fields.Many2one(
-        comodel_name='book.stage',
-        string='Стадия',
-    )
-    """ Стадия процесса чтения книги """
+    # stage_id = fields.Many2one(
+    #     comodel_name='book.stage',
+    #     string='Стадия',
+    # )
+    # """ Стадия процесса чтения книги """
 
-    state = fields.Selection([
-        ('wanted', 'Хочу прочитать'),
-        ('progress', 'Читаю'),
-        ('done', 'Прочитана')],
+    book_stage = fields.Selection(
+        constants.BOOK_STAGES,
         string='Стадии',
-        required=True,
-        readonly=True,
-        default='wanted',
+        default=constants.BOOK_STAGE_WANTED,
     )
     """ Стадия - для выбора """
-    # TODO: сделать константой
 
     # Compute and search fields, in the same order of fields declaration
     # ------------------------------------------------------------------------------------------------------------------

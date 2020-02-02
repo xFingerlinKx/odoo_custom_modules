@@ -58,6 +58,7 @@
     </record>
 
     <!-- Book Tree view -->
+<!-- TODO: разобраться почему показывает книги только с фильтром архивно -> ложно -->
     <record model="ir.ui.view" id="book_book_view_tree">
         <field name="name">book_book_view_tree</field>
         <field name="model">book.book</field>
