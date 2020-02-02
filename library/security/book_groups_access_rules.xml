@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+
+        <record model="ir.module.category" id="module_library_category">
+            <field name="name">Библиотека</field>
+            <field name="description">Библиотека</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record model="res.groups" id="library_group_user">
+            <field name="name">Пользователь</field>
+            <field name="category_id" ref="module_library_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Пользователь</field>
+        </record>
+
+        <record model="res.groups" id="library_group_admin">
+            <field name="name">Администратор</field>
+            <field name="category_id" ref="module_library_category"/>
+            <field name="implied_ids" eval="[(4, ref('library_group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="comment">Администратор</field>
+        </record>
+
+<!--        <record model="res.groups" id="base.group_user">-->
+<!--            <field name="implied_ids" eval="[(4, ref('books.user_group'))]"/>-->
+<!--        </record>-->
+
+    </data>
+
+</odoo>

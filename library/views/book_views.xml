@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <!-- Book Form view -->
+    <record model="ir.ui.view" id="book_book_view_form">
+        <field name="name">book_book_view_form</field>
+        <field name="model">book.book</field>
+        <field name="arch" type="xml">
+            <form string="Книга">
+                <header>
+                    <field name="state"
+                           widget="statusbar"
+                           readonly="1"
+                    />
+
+                    <button name="button_reading_start"
+                            type="object"
+                            states="wanted"
+                            string="Начать читать"
+                            class="btn-primary"
+                    />
+
+                    <button name="button_reading_finish"
+                            type="object"
+                            states="progress"
+                            string="Закончить чтение"
+                            class="btn-primary"
+                    />
+                </header>
+
+                <sheet>
+                    <field name="image"
+                           widget="image"
+                           class="oe_left oe_avatar"
+                    />
+                    <group>
+                        <group name="group_left">
+                            <field name="author"/>
+                            <field name="name"/>
+                            <field name="date_publish"/>
+                            <field name="pages"/>
+                        </group>
+
+                        <group name="group_right">
+                            <field name="date_start"/>
+                            <field name="date_finish"/>
+                            <field name="category_id"/>
+                            <field name="book_file"
+                                   string="Файл книги"
+                                   options="{'no_create': True}"
+                            />
+                        </group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Book Tree view -->
+    <record model="ir.ui.view" id="book_book_view_tree">
+        <field name="name">book_book_view_tree</field>
+        <field name="model">book.book</field>
+        <field name="arch" type="xml">
+            <tree string="Список книг">
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="date_finish"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- TODO: сделать search view-->
+
+</odoo>
