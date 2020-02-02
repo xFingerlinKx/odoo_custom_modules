@@ -104,8 +104,35 @@ class BookBook(models.Model):
     # Action methods
     # ------------------------------------------------------------------------------------------------------------------
 
+    @api.multi
+    def start_to_read(self):
+        """
+        Метод меняет стадию книги на - Читаю
+        :return: True - результат записи - смены стадии
+        """
+        # noinspection PyUnresolvedReferences
+        self.write(
+            {'book_stage': constants.BOOK_STAGE_IN_PROGRESS}
+        )
+        return True
+
+    @api.multi
+    def finish_to_read(self):
+        """
+        Метод меняет стадию книги на - Книга прочитана
+        :return: True - результат записи - смены стадии
+        """
+        # noinspection PyUnresolvedReferences
+        self.write(
+            {'book_stage': constants.BOOK_STAGE_DONE}
+        )
+        return True
+
     # Business methods
     # ------------------------------------------------------------------------------------------------------------------
 
     # CRUD methods
     # ------------------------------------------------------------------------------------------------------------------
+
+    # @api.model
+    # def create(self):
