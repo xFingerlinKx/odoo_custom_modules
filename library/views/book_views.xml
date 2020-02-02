@@ -8,21 +8,19 @@
         <field name="arch" type="xml">
             <form string="Книга">
                 <header>
-                    <field name="state"
+                    <field name="book_stage"
                            widget="statusbar"
                            readonly="1"
                     />
-
-                    <button name="button_reading_start"
+                    <!-- TODO: сделать invisible домен для стадии -->
+                    <button name="start_to_read"
                             type="object"
-                            states="wanted"
                             string="Начать читать"
                             class="btn-primary"
                     />
-
-                    <button name="button_reading_finish"
+                    <!-- TODO: сделать invisible домен для стадии -->
+                    <button name="finish_to_read"
                             type="object"
-                            states="progress"
                             string="Закончить чтение"
                             class="btn-primary"
                     />
@@ -58,7 +56,7 @@
     </record>
 
     <!-- Book Tree view -->
-<!-- TODO: разобраться почему показывает книги только с фильтром архивно -> ложно -->
+    <!-- TODO: разобраться почему показывает книги только с фильтром архивно -> ложно -->
     <record model="ir.ui.view" id="book_book_view_tree">
         <field name="name">book_book_view_tree</field>
         <field name="model">book.book</field>
@@ -67,10 +65,29 @@
                 <field name="name"/>
                 <field name="date_start"/>
                 <field name="date_finish"/>
+                <field name="book_stage"/>
             </tree>
         </field>
     </record>
 
-    <!-- TODO: сделать search view-->
+    <!-- Book Search view -->
+    <record model="ir.ui.view" id="book_book_view_search">
+        <field name="name">book_book_view_search</field>
+        <field name="model">book.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Поля для поиска -->
+                <field name="name"/>
+
+                <!-- Фильтры -->
+                <filter name="inactive_filter"
+                        string="Архивные записи"
+                        domain="[('active', '=', False)]"/>
+                <filter name="active_filter"
+                        string="Нет в архиве"
+                        domain="[('active','=',True)]"/>
+            </search>
+        </field>
+    </record>
 
 </odoo>

@@ -50,7 +50,7 @@ class BookBook(models.Model):
     )
     """ Описание книги """
 
-    date_publish = fields.Integer(
+    date_publish = fields.Char(
         string='Год издания',
         size=4,
     )
