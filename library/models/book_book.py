@@ -2,8 +2,9 @@
 # 1 : imports of python lib
 import logging
 
-# 2 :  imports of odoo 
-from odoo import api, fields, models, _
+# 2 :  imports of odoo
+# noinspection PyUnresolvedReferences
+from odoo import api, fields, models
 
 # 3 :  imports of odoo modules
 
@@ -22,6 +23,7 @@ class BookBook(models.Model):
     # ------------------------------------------------------------------------------------------------------------------
 
     _name = 'book.book'
+    _inherit = 'base_model.mixin'
     _description = u'Модель книги'
 
     # Default methods
@@ -41,20 +43,16 @@ class BookBook(models.Model):
         required=True,
     )
     """ Автор книги """
+    # TODO: сделать можель авторов - res.users
 
     description = fields.Html(
         string='Описание книги',
     )
     """ Описание книги """
 
-    active = fields.Boolean(
-        string='Архивная запись',
-        defaut=False,
-    )
-    """ Архивная запись """
-
-    date_publish = fields.Date(
+    date_publish = fields.Integer(
         string='Год издания',
+        size=4,
     )
     """ Год издания книги """
     # TODO: подумать, чтобы выводить только год (возможно придеться сделать Char или Integer)
@@ -89,12 +87,6 @@ class BookBook(models.Model):
         string='Категория',
     )
     """ Категория книги """
-
-    # stage_id = fields.Many2one(
-    #     comodel_name='book.stage',
-    #     string='Стадия',
-    # )
-    # """ Стадия процесса чтения книги """
 
     book_stage = fields.Selection(
         constants.BOOK_STAGES,

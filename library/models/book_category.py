@@ -2,8 +2,9 @@
 # 1 : imports of python lib
 import logging
 
-# 2 :  imports of odoo 
-from odoo import api, fields, models, _
+# 2 :  imports of odoo
+# noinspection PyUnresolvedReferences
+from odoo import api, fields, models
 
 # 3 :  imports of odoo modules
 
