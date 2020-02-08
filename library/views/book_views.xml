@@ -33,7 +33,7 @@
                     />
                     <group>
                         <group name="group_left">
-                            <field name="author"/>
+                            <field name="author_ids" widget="many2many_tags"/>
                             <field name="name"/>
                             <field name="date_publish"/>
                             <field name="pages"/>
@@ -77,15 +77,18 @@
         <field name="arch" type="xml">
             <search>
                 <!-- Поля для поиска -->
-                <field name="name"/>
-
+                <field name="name"
+                       string="Название книги"
+                />
                 <!-- Фильтры -->
+                <separator/>
                 <filter name="inactive_filter"
                         string="Архивные записи"
                         domain="[('active', '=', False)]"/>
                 <filter name="active_filter"
                         string="Нет в архиве"
                         domain="[('active','=',True)]"/>
+                <separator/>
             </search>
         </field>
     </record>

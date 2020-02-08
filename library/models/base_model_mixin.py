@@ -32,3 +32,4 @@ class BaseModelMixin(models.Model):
         defaut=True,
     )
     """ Архивная запись """
+

@@ -26,7 +26,7 @@
     <menuitem id="book_want_reading"
               name="Хочу прочитать"
               sequence="10"
-              parent="library.book_menu_root"
+              parent="library.book_menu"
               action="action_book_book"
     />
 
@@ -34,7 +34,7 @@
     <menuitem id="book_reading"
               name="Читаю"
               sequence="20"
-              parent="library.book_menu_root"
+              parent="library.book_menu"
               action="action_book_book"
     />
 
@@ -42,7 +42,7 @@
     <menuitem id="book_stop_reading"
               name="Прочитано"
               sequence="30"
-              parent="library.book_menu_root"
+              parent="library.book_menu"
               action="action_book_book"
     />
 
@@ -50,7 +50,7 @@
     <menuitem id="book_category"
               name="Книги по жанрам"
               sequence="40"
-              parent="library.book_menu_root"
+              parent="library.book_menu"
               action="action_book_book"
     />
 

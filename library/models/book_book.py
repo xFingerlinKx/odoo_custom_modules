@@ -23,7 +23,6 @@ class BookBook(models.Model):
     # ------------------------------------------------------------------------------------------------------------------
 
     _name = 'book.book'
-    _inherit = 'base_model.mixin'
     _description = u'Модель книги'
 
     # Default methods
@@ -35,15 +34,16 @@ class BookBook(models.Model):
     name = fields.Char(
         string='Название книги',
         required=True,
+        size=256,
     )
     """ Название книги """
 
-    author = fields.Char(
+    author_ids = fields.Many2many(
+        comodel_name='book.author',
         string='Автор',
         required=True,
     )
     """ Автор книги """
-    # TODO: сделать можель авторов - res.users
 
     description = fields.Html(
         string='Описание книги',
@@ -55,7 +55,6 @@ class BookBook(models.Model):
         size=4,
     )
     """ Год издания книги """
-    # TODO: подумать, чтобы выводить только год (возможно придеться сделать Char или Integer)
 
     date_start = fields.Date(
         string='Начал читать',
@@ -87,6 +86,7 @@ class BookBook(models.Model):
         string='Категория',
     )
     """ Категория книги """
+    # TODO: сделать категориями тэгами - many2many поле
 
     book_stage = fields.Selection(
         constants.BOOK_STAGES,
@@ -94,6 +94,12 @@ class BookBook(models.Model):
         default=constants.BOOK_STAGE_WANTED,
     )
     """ Стадия - для выбора """
+
+    active = fields.Boolean(
+        string='Архивная запись',
+        defaut=True,
+    )
+    """ Архивная запись """
 
     # Compute and search fields, in the same order of fields declaration
     # ------------------------------------------------------------------------------------------------------------------
@@ -107,25 +113,29 @@ class BookBook(models.Model):
     @api.multi
     def start_to_read(self):
         """
-        Метод меняет стадию книги на - Читаю
+        Метод меняет стадию книги на - Читаю,
+        проставляет дату начала чтения
         :return: True - результат записи - смены стадии
         """
         # noinspection PyUnresolvedReferences
-        self.write(
-            {'book_stage': constants.BOOK_STAGE_IN_PROGRESS}
-        )
+        self.write({
+            'book_stage': constants.BOOK_STAGE_IN_PROGRESS,
+            'date_start': fields.Date.today(),
+        })
         return True
 
     @api.multi
     def finish_to_read(self):
         """
-        Метод меняет стадию книги на - Книга прочитана
+        Метод меняет стадию книги на - Книга прочитана,
+        проставляет дату окончания чтения
         :return: True - результат записи - смены стадии
         """
         # noinspection PyUnresolvedReferences
-        self.write(
-            {'book_stage': constants.BOOK_STAGE_DONE}
-        )
+        self.write({
+            'book_stage': constants.BOOK_STAGE_DONE,
+            'date_finish': fields.Date.today(),
+        })
         return True
 
     # Business methods
@@ -133,6 +143,3 @@ class BookBook(models.Model):
 
     # CRUD methods
     # ------------------------------------------------------------------------------------------------------------------
-
-    # @api.model
-    # def create(self):
