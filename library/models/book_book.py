@@ -96,10 +96,10 @@ class BookBook(models.Model):
     """ Стадия - для выбора """
 
     active = fields.Boolean(
-        string='Архивная запись',
-        defaut=True,
+        string="Нет в архиве",
+        default=True
     )
-    """ Архивная запись """
+    """ Нет в архиве """
 
     # Compute and search fields, in the same order of fields declaration
     # ------------------------------------------------------------------------------------------------------------------

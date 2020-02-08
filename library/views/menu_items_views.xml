@@ -2,55 +2,21 @@
 
 <odoo>
 
-    <!-- Менюшка в строчке с приложениями вверху слева -->
     <menuitem id="book_menu_root"
               name="Библиотека"
               sequence="1"
     />
 
-    <!-- Общая вью на странице - показывает заголовок сверху -->
     <act_window id="action_book_book"
                 name="Список книг"
                 res_model="book.book"
                 view_mode="tree,form"
     />
 
-    <!-- Вертикальная менюшка слева -->
     <menuitem id="book_menu"
               name="Книги"
               parent="library.book_menu_root"
               sequence="5"
-              action="action_book_book"
-    />
-    <!-- TODO Переделать экш на нужную вьюшку-->
-    <menuitem id="book_want_reading"
-              name="Хочу прочитать"
-              sequence="10"
-              parent="library.book_menu"
-              action="action_book_book"
-    />
-
-    <!-- TODO Переделать экш на нужную вьюшку-->
-    <menuitem id="book_reading"
-              name="Читаю"
-              sequence="20"
-              parent="library.book_menu"
-              action="action_book_book"
-    />
-
-    <!-- TODO Переделать экш на нужную вьюшку-->
-    <menuitem id="book_stop_reading"
-              name="Прочитано"
-              sequence="30"
-              parent="library.book_menu"
-              action="action_book_book"
-    />
-
-    <!-- TODO Переделать экш на нужную вьюшку-->
-    <menuitem id="book_category"
-              name="Книги по жанрам"
-              sequence="40"
-              parent="library.book_menu"
               action="action_book_book"
     />
 

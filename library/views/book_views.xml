@@ -82,6 +82,19 @@
                 />
                 <!-- Фильтры -->
                 <separator/>
+                <filter name="books_want_to_read"
+                        string="Хочу прочитать"
+                        domain="[('book_stage', '=', 'wanted')]"
+                />
+                <filter name="books_reading"
+                        string="Читаю"
+                        domain="[('book_stage', '=', 'in_progress')]"
+                />
+                <filter name="books_already_read"
+                        string="Прочитал"
+                        domain="[('book_stage', '=', 'done')]"
+                />
+                <separator/>
                 <filter name="inactive_filter"
                         string="Архивные записи"
                         domain="[('active', '=', False)]"/>

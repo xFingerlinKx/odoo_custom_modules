@@ -29,7 +29,7 @@ class BaseModelMixin(models.Model):
 
     active = fields.Boolean(
         string='Архивная запись',
-        defaut=True,
+        default=True,
     )
     """ Архивная запись """
 
