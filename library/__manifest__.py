@@ -20,6 +20,7 @@
 
         'views/book_views.xml',
         'views/authors_views.xml',
+        'views/categories_views.xml',
         'views/menu_items_views.xml',
     ],
 }

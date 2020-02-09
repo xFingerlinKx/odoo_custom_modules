@@ -35,6 +35,12 @@ class BookCategory(models.Model):
     )
     """ Категория книги - жанр """
 
+    books_ids = fields.Many2many(
+        comodel_name='book.book',
+        string='Книги',
+    )
+    """ Книги в категории """
+
     # Compute and search fields, in the same order of fields declaration
     # ------------------------------------------------------------------------------------------------------------------
 

@@ -33,7 +33,9 @@
                     />
                     <group>
                         <group name="group_left">
-                            <field name="author_ids" widget="many2many_tags"/>
+                            <field name="author_ids"
+                                   widget="many2many_tags"
+                            />
                             <field name="name"/>
                             <field name="date_publish"/>
                             <field name="pages"/>
@@ -42,11 +44,15 @@
                         <group name="group_right">
                             <field name="date_start"/>
                             <field name="date_finish"/>
-                            <field name="category_id"/>
+                            <field name="category_ids"
+                                   widget="many2many_tags"
+                            />
                             <field name="book_file"
                                    string="Файл книги"
                             />
-                            <field name="book_link"/>
+                            <field name="book_link"
+                                   widget ="url"
+                            />
                         </group>
                         <field name="description"/>
                     </group>
@@ -56,7 +62,6 @@
     </record>
 
     <!-- Book Tree view -->
-    <!-- TODO: разобраться почему показывает книги только с фильтром архивно -> ложно -->
     <record model="ir.ui.view" id="book_book_view_tree">
         <field name="name">book_book_view_tree</field>
         <field name="model">book.book</field>
@@ -66,6 +71,9 @@
                 <field name="date_start"/>
                 <field name="date_finish"/>
                 <field name="book_stage"/>
+                <field name="category_ids"
+                       widget="many2many_tags"
+                />
             </tree>
         </field>
     </record>
@@ -79,6 +87,12 @@
                 <!-- Поля для поиска -->
                 <field name="name"
                        string="Название книги"
+                />
+                <field name="category_ids"
+                       string="Категория"
+                />
+                <field name="author_ids"
+                       string="Автор"
                 />
                 <!-- Фильтры -->
                 <separator/>

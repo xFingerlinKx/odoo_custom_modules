@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="book_categorie_view_form">
+            <field name="name">book_category_view_form</field>
+            <field name="model">book.category</field>
+            <field name="arch" type="xml">
+                <form string="Категория">
+                    <sheet>
+                        <group>
+<!--                            <group name="group_left">-->
+                            <field name="name"/>
+<!--                            </group>-->
+<!--                            <group name="group_right">-->
+                            <field name="books_ids"/>
+<!--                            </group>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="book_categorie_view_tree">
+            <field name="name">book_category_view_tree</field>
+            <field name="model">book.category</field>
+            <field name="arch" type="xml">
+                <tree string="Категории">
+                    <field name="name"/>
+                    <field name="books_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="book_categorie_view_search">
+            <field name="name">book_category_view_search</field>
+            <field name="model">book.category</field>
+            <field name="arch" type="xml">
+                <search string="Категория">
+                    <group expand="0" string="Group By">
+                        <filter name="name" string="Категория" domain="[]" context="{'group_by':'name'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

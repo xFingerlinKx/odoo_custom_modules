@@ -7,18 +7,34 @@
               sequence="1"
     />
 
-    <!-- TODO: переделать action в record -->
-    <act_window id="action_book_book"
-                name="Список книг"
-                res_model="book.book"
-                view_mode="tree,form"
-    />
+    <record model="ir.actions.act_window" id="action_book_book">
+            <field name="name">Список книг</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">book.book</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
 
     <menuitem id="book_menu"
               name="Книги"
               parent="library.book_menu_root"
-              sequence="5"
+              sequence="1"
               action="action_book_book"
+    />
+
+    <record model="ir.actions.act_window" id="action_books_categories">
+            <field name="name">Категория</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">book.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="books_categories_menu"
+              name="Категории книг"
+              parent="library.book_menu_root"
+              sequence="10"
+              action="action_books_categories"
     />
 
     <record model="ir.actions.act_window" id="action_books_authors">
@@ -32,6 +48,7 @@
     <menuitem id="books_authors_menu"
               name="Авторы"
               parent="library.book_menu_root"
+              sequence="20"
               action="action_books_authors"
     />
 

@@ -81,7 +81,7 @@ class BookBook(models.Model):
     )
     """ Количество страниц """
 
-    category_id = fields.Many2one(
+    category_ids = fields.Many2many(
         comodel_name='book.category',
         string='Категория',
     )
@@ -103,7 +103,7 @@ class BookBook(models.Model):
     """ Нет в архиве """
 
     book_link = fields.Char(
-        string='Ссылка на Oz.by'
+        string='Ссылка на Oz.by',
     )
     """ Ссылка книги на Oz.by """
 
