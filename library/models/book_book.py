@@ -97,9 +97,15 @@ class BookBook(models.Model):
 
     active = fields.Boolean(
         string="Нет в архиве",
-        default=True
+        default=True,
+        track_visibility='onchange',
     )
     """ Нет в архиве """
+
+    book_link = fields.Char(
+        string='Ссылка на Oz.by'
+    )
+    """ Ссылка книги на Oz.by """
 
     # Compute and search fields, in the same order of fields declaration
     # ------------------------------------------------------------------------------------------------------------------

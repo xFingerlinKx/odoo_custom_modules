@@ -45,8 +45,8 @@
                             <field name="category_id"/>
                             <field name="book_file"
                                    string="Файл книги"
-                                   options="{'no_create': True}"
                             />
+                            <field name="book_link"/>
                         </group>
                         <field name="description"/>
                     </group>

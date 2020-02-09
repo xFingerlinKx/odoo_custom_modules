@@ -16,7 +16,6 @@ _logger = logging.getLogger(__name__)
 class BookAuthor(models.Model):
     """ 
     Автор книги
-    (у книги может быть несколько авторов)
     """
 
     # Private attributes
@@ -45,21 +44,17 @@ class BookAuthor(models.Model):
 
     name = fields.Char(
         string='Автор',
-        compute='_compute_author_name',
+        readonly=True,
     )
+
+    books_ids = fields.Many2many(
+        comodel_name='book.book',
+        string='Книги',
+    )
+    """ Книги """
 
     # Compute and search fields, in the same order of fields declaration
     # ------------------------------------------------------------------------------------------------------------------
-
-    @api.model
-    def _compute_author_name(self):
-        """
-        Метод возвращает полное имя автора Фамилия + Имя
-        :return: basestring --> полное имя автора книги
-        """
-        # noinspection PyUnresolvedReferences
-        for record in self:
-            record.name = record.first_name + ' ' + record.surname
 
     # Constraints and onchanges
     # ------------------------------------------------------------------------------------------------------------------
@@ -70,12 +65,27 @@ class BookAuthor(models.Model):
     # Business methods
     # ------------------------------------------------------------------------------------------------------------------
 
+    @api.model
+    def _get_author_name(self, vals):
+        """
+        Метод для получения полного имени автора - фамилия + имя
+        :param vals: словарь создаваемых значений
+        :return basestring: полное имя автора
+        """
+        # TODO: сделать методы для очистки от пробелов и цифр
+        vals['name'] = vals.get('surname') + ' ' + vals.get('first_name')
+        return vals['name']
+
     # CRUD methods
     # ------------------------------------------------------------------------------------------------------------------
 
-    # def create(self):
-    #     return res
-    #
+    @api.model
+    def create(self, vals):
+        self._get_author_name(vals)
+        res = super(BookAuthor, self).create(vals)
+        return res
+
     # def write(self, vals):
+    #     print(vals)
     #     res = super(BookAuthor, self).write(vals)
     #     return res

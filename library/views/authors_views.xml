@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="books_authors_view_form">
+            <field name="name">books_authors_view_form</field>
+            <field name="model">book.author</field>
+            <field name="arch" type="xml">
+                <form string="Автор книги">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="surname"/>
+                                <field name="first_name"/>
+                            </group>
+                            <field name="books_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="books_authors_view_tree">
+            <field name="name">books_authors_view_tree</field>
+            <field name="model">book.author</field>
+            <field name="arch" type="xml">
+                <tree string="Авторы книг">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="books_authors_view_search">
+            <field name="name">books_authors_view_search</field>
+            <field name="model">book.author</field>
+            <field name="arch" type="xml">
+                <search string="Поиск по автору">
+                    <field name="surname" string="Фамилия"/>
+                    <field name="first_name" string="Имя"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>
