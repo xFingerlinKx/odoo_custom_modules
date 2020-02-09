@@ -85,7 +85,7 @@ class BookAuthor(models.Model):
         res = super(BookAuthor, self).create(vals)
         return res
 
-    # def write(self, vals):
-    #     print(vals)
-    #     res = super(BookAuthor, self).write(vals)
-    #     return res
+    def write(self, vals):
+        self._get_author_name(vals)
+        res = super(BookAuthor, self).write(vals)
+        return res
